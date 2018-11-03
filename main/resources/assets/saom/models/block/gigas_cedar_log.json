@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "saom:blocks/gigas_cedar_log_end",
+        "side": "saom:blocks/gigas_cedar_log_side"
+    }
+}

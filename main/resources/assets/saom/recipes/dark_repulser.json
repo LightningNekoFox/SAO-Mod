@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "  D",
+        "DD ",
+        "SD "
+    ],
+    
+    "key":
+    {
+        "D":
+        {
+            "item": "saom:dragon_ice_ingot"
+        },
+        
+        "S":
+        {
+            "item": "minecraft:stick"
+        }
+    },
+    
+    "result":
+    {
+        "item": "saom:dark_repulser",
+        "count": 1
+    }
+}

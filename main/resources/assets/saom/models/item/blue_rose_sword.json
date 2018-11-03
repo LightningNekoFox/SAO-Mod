@@ -1,0 +1,6 @@
+{
+   "parent": "item/handheld",
+   "textures": {
+       "layer0": "saom:items/blue_rose_sword"
+   }
+}

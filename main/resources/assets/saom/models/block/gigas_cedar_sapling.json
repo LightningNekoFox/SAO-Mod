@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "saom:blocks/gigas_cedar_sapling"
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern":
+    [
+        "OOO",
+        "OSO",
+        "OOO"
+    ],
+    
+    "key":
+    {
+        "O":
+        {
+            "item": "minecraft:obsidian"
+        },
+        
+        "S":
+        {
+            "item": "natura:redwood_leaves",
+            "data": 0
+        }
+    },
+    
+    "result":
+    {
+        "item": "saom:gigas_cedar_sapling",
+        "count": 1
+    }
+}

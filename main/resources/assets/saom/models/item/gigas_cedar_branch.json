@@ -1,0 +1,6 @@
+{
+   "parent": "item/generated",
+   "textures": {
+       "layer0": "saom:items/gigas_cedar_branch"
+   }
+}

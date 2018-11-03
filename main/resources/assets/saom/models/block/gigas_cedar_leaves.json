@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "saom:blocks/gigas_cedar_leaves"
+    }
+}

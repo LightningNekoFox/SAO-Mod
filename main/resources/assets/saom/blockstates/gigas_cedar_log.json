@@ -1,0 +1,8 @@
+{
+   "variants": {
+        "axis=x,variant=default": {"model": "saom:gigas_cedar_log"},
+        "axis=y,variant=default": {"model": "saom:gigas_cedar_log"},
+        "axis=z,variant=default": {"model": "saom:gigas_cedar_log"},
+        "axis=none,variant=default": {"model": "saom:gigas_cedar_log"}
+    }
+}

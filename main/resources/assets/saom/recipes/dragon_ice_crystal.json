@@ -1,0 +1,26 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients": 
+    [
+
+    {
+      "item": "minecraft:prismarine_crystals"
+    },
+
+    {
+      "item": "minecraft:packed_ice"
+    },
+
+    {
+      "item": "minecraft:diamond"
+    }
+    
+    ],
+
+    "result": 
+    {
+        "item": "saom:dragon_ice_crystal",
+        "count": 1
+    }
+}

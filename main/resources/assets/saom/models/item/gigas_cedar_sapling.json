@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "saom:blocks/gigas_cedar_sapling"
+    }
+}

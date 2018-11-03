@@ -1,0 +1,16 @@
+[
+{
+  "modid": "saom",
+  "name": "SAO Mod",
+  "description": "A mod (and my first one at that) that adds a bunch of stuff from Sword Art Online",
+  "version": "0.4a",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["TheGoldenProof"],
+  "credits": "All the helpful people online, especially the Forge Modder Support forums.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
