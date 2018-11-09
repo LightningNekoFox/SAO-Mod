@@ -1,0 +1,6 @@
+{
+   "parent": "item/handheld",
+   "textures": {
+       "layer0": "saom:items/fragrant_olive_sword"
+   }
+}

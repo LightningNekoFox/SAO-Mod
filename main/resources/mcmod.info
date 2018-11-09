@@ -3,7 +3,7 @@
   "modid": "saom",
   "name": "SAO Mod",
   "description": "A mod (and my first one at that) that adds a bunch of stuff from Sword Art Online",
-  "version": "0.4a",
+  "version": "0.6a",
   "mcversion": "1.12.2",
   "url": "",
   "updateUrl": "",
@@ -11,6 +11,6 @@
   "credits": "All the helpful people online, especially the Forge Modder Support forums.",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": ["simplerpg-2.2-1.12.1.jar", "natura-1.12.2-4.3.2.62.jar"]
 }
 ]

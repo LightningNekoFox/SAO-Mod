@@ -21,16 +21,26 @@ import thegoldenproof.saomod.util.*;
 public class ModItems {
 	
 	//Tools
-	public static final ItemSword ELUCIDATOR = null;
-	public static final ItemSword DARK_REPULSER = null;
-	public static final ItemSword BLACK_ONE = null;
-	public static final ItemSword BLUE_ROSE_SWORD = null;
-	public static final ItemAxe DRAGON_BONE_AXE = null;
+		//season 1
+			public static final ToolSword ELUCIDATOR = null;
+			public static final ToolSword DARK_REPULSER = null;
+		//season 2
+			public static final ToolSword EXCALIBUR = null;
+			public static final ToolSword CALIBUR = null;
+		//season 3
+			public static final ToolSword BLACK_ONE = null;
+			public static final ToolSword BLUE_ROSE_SWORD = null;
+			public static final ToolSword FRAGRANT_OLIVE_SWORD = null;
+			
+			public static final ToolAxe DRAGON_BONE_AXE = null;
+		//extra
 	
 	//Items
-	public static final Item DRAGON_ICE_CRYSTAL = null;
-	public static final Item DRAGON_ICE_INGOT = null;
-	public static final Item GIGAS_CEDAR_BRANCH = null;
-	
+		//season 1
+			public static final Item DRAGON_ICE_CRYSTAL = null;
+			public static final Item DRAGON_ICE_INGOT = null;
+		//season 2
+			public static final Item GIGAS_CEDAR_BRANCH = null;
+		//extra
 	
 }

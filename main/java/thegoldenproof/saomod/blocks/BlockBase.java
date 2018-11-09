@@ -16,13 +16,14 @@ import thegoldenproof.saomod.util.handlers.RegistryHandler;
 
 public class BlockBase extends Block {
 	
-	ArrayList<String> tooltips = new ArrayList<String>(0);
+	ArrayList<String> tooltip;
 	
 	public BlockBase(String name, Material material, CreativeTabs tab, String[] tooltip) {
 		super(material);
-		
-		for (String s : tooltip) {
-			tooltips.add(s);
+		if (tooltip != null) {
+			this.tooltip = new ArrayList<String>(Arrays.asList(tooltip));
+		} else {
+			this.tooltip = new ArrayList<String>();
 		}
 		
 		setUnlocalizedName(name);
@@ -35,16 +36,12 @@ public class BlockBase extends Block {
 	}
 	
 	public BlockBase(String name, Material material, CreativeTabs tab) {
-		this(name, material, tab, new String[] {""});
+		this(name, material, tab, null);
 	}
 	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (!tooltips.isEmpty()) {
-			for (String s : tooltips) {
-				tooltip.add(s);
-			}
-		}
+		tooltip.addAll(this.tooltip);
 	}
 	
 }

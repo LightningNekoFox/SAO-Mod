@@ -34,51 +34,48 @@ public class MarbleBlock extends BlockBase {
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		
-		AxisAlignedBB above = new AxisAlignedBB(pos.up());
-		boolean hasBranch = false;
-		boolean hasObsidian = false;
-		EntityItem branch = null;
-		EntityItem obsidian = null;
-		List<EntityItem> entities = worldIn.getEntitiesWithinAABB(EntityItem.class, above);
-		
-		for(EntityItem ei : entities) {
-			if (ei.getItem().getItem().equals(ModItems.GIGAS_CEDAR_BRANCH)) {
-				hasBranch = true;
-				branch = ei;
+		BlockPos up = pos.up();
+		int tickPhase = 0;
+		if (getBlockFromItem(playerIn.inventory.getCurrentItem().getItem()) == Blocks.OBSIDIAN && worldIn.isAirBlock(up) && tickPhase == 0) {
+			AxisAlignedBB above = new AxisAlignedBB(up);
+			boolean hasBranch = false;
+			EntityItem branch = null;
+			EntityItem obsidian = null;
+			List<EntityItem> entities = worldIn.getEntitiesWithinAABB(EntityItem.class, above);
+			
+			for(EntityItem ei : entities) {
+				if (ei.getItem().getItem().equals(ModItems.GIGAS_CEDAR_BRANCH)) {
+					hasBranch = true;
+					branch = ei;
+				}
 			}
 			
-			if (ei.getItem().getItem().equals(Item.getItemFromBlock(Blocks.OBSIDIAN))) {
-				hasObsidian = true;
-				obsidian = ei;
-			}
-		}
-		
-		if (!hasBranch) {
-			playerIn.sendMessage(new TextComponentString("Missing Gigas Cedar Branch!"));
-		}
-		if (!hasObsidian) {
-			playerIn.sendMessage(new TextComponentString("Missing Obsidian!"));
-		}
-		
-		if (hasBranch && hasObsidian) {
-			Sharpenedness capability = branch.getItem().getCapability(SharpenednessProvider.SHARPENED, null);
-			
-			if (playerIn.inventory.getCurrentItem().isEmpty() && hasBranch && hasObsidian) {
+			if (!hasBranch) {
+				playerIn.sendMessage(new TextComponentString("Missing Gigas Cedar Branch!"));
+			} else if (hasBranch) {
+				Sharpenedness capability = branch.getItem().getCapability(SharpenednessProvider.SHARPENED, null);
+				
 				capability.addProgress(1);
 				
+				if (capability.getProgress() % 200 == 0 && capability.getProgress() != 0) {
+					int count = playerIn.inventory.getCurrentItem().getCount();
+					//if (count > 1) {
+						int index = playerIn.inventory.currentItem;
+						playerIn.inventory.removeStackFromSlot(index);
+						playerIn.inventory.setInventorySlotContents(index, new ItemStack(Blocks.OBSIDIAN, count - 1));
+					//}
+				}
+				
+				if(capability.getProgress() >= 600) {
+					worldIn.removeEntity(branch);
+					playerIn.addItemStackToInventory(new ItemStack(ModItems.BLACK_ONE));
+				}
 			}
-			
-			if (capability.getProgress() % 40 == 0 && capability.getProgress() != 0) {
-				worldIn.removeEntity(obsidian);
-			}
-			
-			if(capability.getProgress() >= 120) {
-				worldIn.removeEntity(branch);
-				playerIn.addItemStackToInventory(new ItemStack(ModItems.BLACK_ONE));
-			}
+			tickPhase++;
+		} else {
+			tickPhase = 0;
 		}
-		return false;
+		return true;
 	}
 	
 }

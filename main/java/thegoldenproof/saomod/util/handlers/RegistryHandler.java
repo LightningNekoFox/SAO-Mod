@@ -1,5 +1,6 @@
 package thegoldenproof.saomod.util.handlers;
 
+import java.awt.Dialog.ModalExclusionType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,6 +16,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import thegoldenproof.saomod.SAOM;
 import thegoldenproof.saomod.blocks.BlockBase;
@@ -69,11 +72,14 @@ public class RegistryHandler {
 		//Tools
 		SAOM.info("Registering Items: Tools");
 		
-		registry.register(new ToolSword("elucidator", ModExtras.M_ELUCIDATOR, ModExtras.P_ELUCIDATOR, SAOM.saoModTab));
+		registry.register(new ToolSword("elucidator", ModExtras.M_ELUCIDATOR, ModExtras.P_ELUCIDATOR, SAOM.saoModTab, ModExtras.ELUCIDATOR_TOOLTIP));
 		registry.register(new ToolSword("dark_repulser", ModExtras.M_DARK_REPULSER, ModExtras.P_DARK_REPULSER, SAOM.saoModTab));
+		registry.register(new ToolSword("excalibur", ModExtras.M_EXCALIBUR, ModExtras.P_EXCALIBUR, SAOM.saoModTab, ModExtras.EXCALIBUR_TOOLTIP));
+		registry.register(new ToolSword("calibur", ModExtras.M_CALIBUR, ModExtras.P_CALIBUR, SAOM.saoModTab, ModExtras.CALIBUR_TOOLTIP));
 		registry.register(new ToolSword("black_one", ModExtras.M_GIGAS_CEDAR, ModExtras.P_BLACK_ONE, SAOM.saoModTab, ModExtras.BLACK_ONE_TOOLTIP));
-		registry.register(new ToolSword("blue_rose_sword", ModExtras.M_BLUE_ROSE, ModExtras.P_BLUE_ROSE_SWORD, SAOM.saoModTab));
-		registry.register(new ToolAxe("dragon_bone_axe", ModExtras.M_DRAGON_BONE, ModExtras.P_DRAGON_BONE_AXE, SAOM.saoModTab));
+		registry.register(new ToolSword("blue_rose_sword", ModExtras.M_BLUE_ROSE, ModExtras.P_BLUE_ROSE_SWORD, SAOM.saoModTab, ModExtras.BLUE_ROSE_SWORD_TOOLTIP));
+		registry.register(new ToolSword("fragrant_olive_sword", ModExtras.M_FRAGRANT_OLIVE, ModExtras.P_FRAGRANT_OLIVE_SWORD, SAOM.saoModTab, ModExtras.FRAGRANT_OLIVE_SWORD_TOOLTIP));
+		registry.register(new ToolAxe("dragon_bone_axe", ModExtras.M_DRAGON_BONE, ModExtras.P_DRAGON_BONE_AXE, SAOM.saoModTab, ModExtras.DRAGON_BONE_AXE_TOOLTIP));
 		
 		//Items
 		SAOM.info("Registering Items: Items");
@@ -83,6 +89,8 @@ public class RegistryHandler {
 		registry.register(new GigasCedarBranch("gigas_cedar_branch", ModExtras.P_GIGAS_CEDAR_BRANCH, SAOM.saoModTab, ModExtras.GIGAS_BRANCH_TOOLTIP));
 		
 		SAOM.info("Registering Items Complete");
+		
+		registerOres();
 		
 	}
 	
@@ -96,5 +104,14 @@ public class RegistryHandler {
 		for (Block block : BLOCKS) {
 			SAOM.proxy.registerItemRenderer(Item.getItemFromBlock(block), 0, "inventory");
 		}
+	}
+	
+	public static void registerOres() {
+		SAOM.info("Registering OreDictionary Entries");
+		
+		OreDictionary.registerOre("stone", ModBlocks.MARBLE_BLOCK);
+		OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.GIGAS_CEDAR_LOG, 1, OreDictionary.WILDCARD_VALUE));
+		
+		SAOM.info("Registering OreDictionary Entries Complete");
 	}
 }

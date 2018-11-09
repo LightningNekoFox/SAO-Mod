@@ -27,16 +27,16 @@ import thegoldenproof.saomod.capabilities.SharpenednessProvider;
 
 public class GigasCedarBranch extends ItemBase {
 	
-	List<String> tooltip;
+	ArrayList<String> tooltip;
 
 	public GigasCedarBranch(String name, int priority, CreativeTabs tab, String[] tooltip) {
 		super(name, priority, tab);
-		this.tooltip = Arrays.asList(tooltip);
+		this.tooltip = new ArrayList<String>(Arrays.asList(tooltip));
 	}
 	
 	@Override
 	public void readNBTShareTag(ItemStack stack, NBTTagCompound nbt) {
-		stack.deserializeNBT(nbt);
+		stack.setTagCompound(nbt);
 	}
 	
 	@Override
@@ -50,7 +50,7 @@ public class GigasCedarBranch extends ItemBase {
 		if (prog == 0) {
 			tooltip.addAll(this.tooltip);
 		}
-		tooltip.add("Sharpening progress: "+prog+"/120");
+		tooltip.add("Sharpening progress: "+prog+"/600");
 		tooltip.add("Object Priority: "+priority);
 	}
 	

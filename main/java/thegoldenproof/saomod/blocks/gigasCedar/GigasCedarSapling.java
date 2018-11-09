@@ -1,6 +1,7 @@
 package thegoldenproof.saomod.blocks.gigasCedar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -37,7 +38,7 @@ public class GigasCedarSapling extends BlockBush implements IMetaName, IGrowable
 	
 	public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
-	ArrayList<String> tooltips = new ArrayList<String>(0);
+	ArrayList<String> tooltip;
 	
 	public static final PropertyEnum<GigasCedarLog.EnumType> VARIANT = PropertyEnum.<GigasCedarLog.EnumType>create("variant", GigasCedarLog.EnumType.class, new Predicate<GigasCedarLog.EnumType>() {
 		public boolean apply(@Nullable GigasCedarLog.EnumType apply) {
@@ -51,10 +52,8 @@ public class GigasCedarSapling extends BlockBush implements IMetaName, IGrowable
 	}
 	
 	public GigasCedarSapling(String name, CreativeTabs tab, String[] tooltip) {
-		
-		for (String s : tooltip) {
-			tooltips.add(s);
-		}
+
+		this.tooltip = new ArrayList<String>(Arrays.asList(tooltip));
 		
 		setCreativeTab(tab);
 		setRegistryName(name);
@@ -72,11 +71,7 @@ public class GigasCedarSapling extends BlockBush implements IMetaName, IGrowable
 	
 	@Override
 	public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-		if (!tooltips.isEmpty()) {
-			for (String s : tooltips) {
-				tooltip.add(s);
-			}
-		}
+		tooltip.addAll(this.tooltip);
 	}
 	
 	@Override

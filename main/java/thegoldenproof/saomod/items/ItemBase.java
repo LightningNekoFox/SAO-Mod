@@ -2,6 +2,7 @@ package thegoldenproof.saomod.items;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,16 +21,17 @@ import thegoldenproof.saomod.util.handlers.RegistryHandler;
 
 public class ItemBase extends Item {
 	
-	ArrayList<String> tooltips = new ArrayList<String>(0);
+	ArrayList<String> tooltip;
 	int priority;
 	
 	public ItemBase(String name, int priority, CreativeTabs tab, String[] tooltip) {
 		this.priority = priority;
-		
-		for (String s : tooltip) {
-			tooltips.add(s);
+		if (tooltip != null) {
+			this.tooltip = new ArrayList<String>(Arrays.asList(tooltip));
+		} else {
+			this.tooltip = new ArrayList<String>();
 		}
-		tooltips.add("Object Priority: "+priority);
+		this.tooltip.add("Object Priority: "+priority);
 		
 		setUnlocalizedName(name);
 		setRegistryName(name);
@@ -39,16 +41,12 @@ public class ItemBase extends Item {
 	}
 	
 	public ItemBase(String name, int priority, CreativeTabs tab) {
-		this(name, priority, tab, new String[] {""});
+		this(name, priority, tab, null);
 	}
 	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (!tooltips.isEmpty()) {
-			for (String s : tooltips) {
-				tooltip.add(s);
-			}
-		}
+		tooltip.addAll(this.tooltip);
 	}
 	
 	@Override

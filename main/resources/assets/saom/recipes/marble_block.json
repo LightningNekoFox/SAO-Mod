@@ -1,0 +1,19 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients": 
+    [
+
+    {
+      "item": "minecraft:stone",
+      "data": 4
+    }
+    
+    ],
+
+    "result": 
+    {
+        "item": "saom:marble_block",
+        "count": 1
+    }
+}

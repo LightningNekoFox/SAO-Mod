@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.google.common.collect.Multimap;
 
@@ -16,6 +18,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
@@ -24,29 +27,41 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import pilot.simplerpg.capabilities.IRpgPlayer;
 import pilot.simplerpg.capabilities.RpgPlayerProvider;
-import scala.actors.threadpool.Arrays;
 import thegoldenproof.saomod.SAOM;
 import thegoldenproof.saomod.init.ModBlocks;
+import thegoldenproof.saomod.util.IPriority;
 import thegoldenproof.saomod.util.handlers.RegistryHandler;
 
-public class ToolSword extends ItemSword {
+public class ToolSword extends ItemSword implements IPriority {
 	int priority;
-	List<String> tooltip;
+	ArrayList<String> tooltip;
+	boolean priorityReqd = true;
 
 	public ToolSword(String name, ToolMaterial material, int priority, CreativeTabs tab) {
-		this(name, material, priority, tab, new String[] {""});
+		this(name, material, priority, tab, null);
 	}
 	
 	public ToolSword(String name, ToolMaterial material, int priority, CreativeTabs tab, String[] tooltip) {
 		super(material);
 		
 		this.priority = priority;
-		this.tooltip = Arrays.asList(tooltip);
+		
+		if (tooltip != null) {
+			this.tooltip = new ArrayList<String>(Arrays.asList(tooltip));
+		} else {
+			this.tooltip = new ArrayList<String>();
+		}
+		this.tooltip.add("Object priority: "+priority);
+		
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		setCreativeTab(tab);
 		
 		RegistryHandler.ITEMS.add(this);
+	}
+	
+	public void setPriorityReqd(boolean priorityReqd) {
+		this.priorityReqd = priorityReqd;
 	}
 	
 	@Override
@@ -60,12 +75,11 @@ public class ToolSword extends ItemSword {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.addAll(this.tooltip);
-		tooltip.add("Object priority: "+priority);
 	}
 	
 	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-		if (entityIn instanceof EntityPlayerMP) {
+		if (entityIn instanceof EntityPlayerMP && priorityReqd) {
 			EntityPlayerMP p = (EntityPlayerMP)(entityIn);
 			IRpgPlayer rpg = (IRpgPlayer) p.getCapability(RpgPlayerProvider.RPG_PLAYER_CAP, (EnumFacing) null);
 			int level = rpg.getLevel();
@@ -74,6 +88,11 @@ public class ToolSword extends ItemSword {
 				p.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("mining_fatigue"), 10, (int)(Math.ceil((priority-level)/10))));
 			}
 		}
+	}
+
+	@Override
+	public Item getItem() {
+		return this;
 	}
 
 }

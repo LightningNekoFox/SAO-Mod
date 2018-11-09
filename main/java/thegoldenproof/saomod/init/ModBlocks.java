@@ -17,10 +17,14 @@ import thegoldenproof.saomod.util.Reference;
 @ObjectHolder(Reference.MOD_ID)
 public class ModBlocks {
 	
-	public static final MarbleBlock MARBLE_BLOCK = null;
-	
-	public static final Block GIGAS_CEDAR_LOG = null;
-	public static final Block GIGAS_CEDAR_LEAVES = null;
-	public static final Block GIGAS_CEDAR_SAPLING = null;
+	//season 1
+	//season 2
+	//season 3
+		public static final MarbleBlock MARBLE_BLOCK = null;
+		
+		public static final Block GIGAS_CEDAR_LOG = null;
+		public static final Block GIGAS_CEDAR_LEAVES = null;
+		public static final Block GIGAS_CEDAR_SAPLING = null;
+	//extra
 	
 }

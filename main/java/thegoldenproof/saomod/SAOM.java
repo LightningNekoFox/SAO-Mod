@@ -6,6 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -16,13 +18,16 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import thegoldenproof.saomod.capabilities.Sharpenedness;
 import thegoldenproof.saomod.capabilities.SharpenednessFactory;
 import thegoldenproof.saomod.capabilities.SharpenednessStorage;
+import thegoldenproof.saomod.command.SystemCommandCmd;
 import thegoldenproof.saomod.init.ModRecipes;
 import thegoldenproof.saomod.proxy.IProxy;
 import thegoldenproof.saomod.tabs.SaoModTab;
 import thegoldenproof.saomod.util.Reference;
+import thegoldenproof.saomod.util.handlers.RegistryHandler;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, useMetadata = true)
 public class SAOM {
@@ -40,8 +45,7 @@ public class SAOM {
 	public static void PreInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
 		proxy.logPhysicalSide();
-		CapabilityManager.INSTANCE.register(Sharpenedness.class, new SharpenednessStorage(), new SharpenednessFactory());
-		
+		registerStuff();
 	}
 	
 	@EventHandler
@@ -52,6 +56,16 @@ public class SAOM {
 	@EventHandler
 	public static void PostInit(FMLPostInitializationEvent event) {
 		
+	}
+	
+	@EventHandler
+	public static void serverStarting(FMLServerStartingEvent event) {
+		//event.registerServerCommand(new SystemCommandCmd());
+	}
+	
+	private static void registerStuff() {
+		CapabilityManager.INSTANCE.register(Sharpenedness.class, new SharpenednessStorage(), new SharpenednessFactory());
+		LootTableList.register(new ResourceLocation("saom:village_blacksmith"));
 	}
 	
 	private static Logger getLogger() {
