@@ -33,25 +33,21 @@ import thegoldenproof.saomod.util.IPriority;
 import thegoldenproof.saomod.util.handlers.RegistryHandler;
 
 public class ToolSword extends ItemSword implements IPriority {
-	int priority;
 	ArrayList<String> tooltip;
 	boolean priorityReqd = true;
 
-	public ToolSword(String name, ToolMaterial material, int priority, CreativeTabs tab) {
-		this(name, material, priority, tab, null);
+	public ToolSword(String name, ToolMaterial material, CreativeTabs tab) {
+		this(name, material, tab, null);
 	}
 	
-	public ToolSword(String name, ToolMaterial material, int priority, CreativeTabs tab, String[] tooltip) {
+	public ToolSword(String name, ToolMaterial material, CreativeTabs tab, String[] tooltip) {
 		super(material);
-		
-		this.priority = priority;
 		
 		if (tooltip != null) {
 			this.tooltip = new ArrayList<String>(Arrays.asList(tooltip));
 		} else {
 			this.tooltip = new ArrayList<String>();
 		}
-		this.tooltip.add("Object priority: "+priority);
 		
 		setUnlocalizedName(name);
 		setRegistryName(name);
@@ -75,19 +71,6 @@ public class ToolSword extends ItemSword implements IPriority {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.addAll(this.tooltip);
-	}
-	
-	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-		if (entityIn instanceof EntityPlayerMP && priorityReqd) {
-			EntityPlayerMP p = (EntityPlayerMP)(entityIn);
-			IRpgPlayer rpg = (IRpgPlayer) p.getCapability(RpgPlayerProvider.RPG_PLAYER_CAP, (EnumFacing) null);
-			int level = rpg.getLevel();
-			if (priority > level) {
-				p.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("slowness"), 10, (int)(Math.ceil((priority-level)/10))));
-				p.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("mining_fatigue"), 10, (int)(Math.ceil((priority-level)/10))));
-			}
-		}
 	}
 
 	@Override

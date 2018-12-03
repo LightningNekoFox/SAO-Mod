@@ -22,14 +22,13 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import thegoldenproof.saomod.capabilities.Sharpenedness;
 import thegoldenproof.saomod.capabilities.SharpenednessFactory;
 import thegoldenproof.saomod.capabilities.SharpenednessStorage;
-import thegoldenproof.saomod.command.SystemCommandCmd;
 import thegoldenproof.saomod.init.ModRecipes;
 import thegoldenproof.saomod.proxy.IProxy;
 import thegoldenproof.saomod.tabs.SaoModTab;
 import thegoldenproof.saomod.util.Reference;
 import thegoldenproof.saomod.util.handlers.RegistryHandler;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, useMetadata = true)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, useMetadata = true, dependencies = "required-after:simplerpg@[2.2];required-after:natura@[1.12.2-4.3.2.62,);required-after:objectpriorities")
 public class SAOM {
 	
 	@Instance
@@ -60,7 +59,7 @@ public class SAOM {
 	
 	@EventHandler
 	public static void serverStarting(FMLServerStartingEvent event) {
-		//event.registerServerCommand(new SystemCommandCmd());
+		RegistryHandler.addPriorities();
 	}
 	
 	private static void registerStuff() {
@@ -127,4 +126,4 @@ public class SAOM {
 		}
 	}
 	
-}
+} //

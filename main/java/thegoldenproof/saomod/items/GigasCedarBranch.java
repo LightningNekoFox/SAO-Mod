@@ -29,8 +29,8 @@ public class GigasCedarBranch extends ItemBase {
 	
 	ArrayList<String> tooltip;
 
-	public GigasCedarBranch(String name, int priority, CreativeTabs tab, String[] tooltip) {
-		super(name, priority, tab);
+	public GigasCedarBranch(String name, CreativeTabs tab, String[] tooltip) {
+		super(name, tab);
 		this.tooltip = new ArrayList<String>(Arrays.asList(tooltip));
 	}
 	
@@ -51,7 +51,6 @@ public class GigasCedarBranch extends ItemBase {
 			tooltip.addAll(this.tooltip);
 		}
 		tooltip.add("Sharpening progress: "+prog+"/600");
-		tooltip.add("Object Priority: "+priority);
 	}
 	
 	@Override

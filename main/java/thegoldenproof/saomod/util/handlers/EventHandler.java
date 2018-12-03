@@ -29,6 +29,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import thegoldenproof.objectpriorities.config.PriorityParser;
 import thegoldenproof.saomod.SAOM;
 import thegoldenproof.saomod.capabilities.Sharpenedness;
 import thegoldenproof.saomod.capabilities.SharpenednessProvider;

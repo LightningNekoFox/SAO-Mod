@@ -7,8 +7,6 @@ public class ModExtras {
 	
 	//Block-Related
 		
-		
-		
 	//Item-Related/ItemBlock-Related
 		//Tooltips
 			public static final String[] GIGAS_BRANCH_TOOLTIP = {
@@ -20,7 +18,7 @@ public class ModExtras {
 			public static final String[] ELUCIDATOR_TOOLTIP = {"A 20% drop chance from a player killing the wither boss in The End"};
 			public static final String[] DRAGON_BONE_AXE_TOOLTIP = {"1/5 spawn chance in village blacksmith chests"};
 			public static final String[] BLUE_ROSE_SWORD_TOOLTIP = {"1/5 spawn chance in igloos"};
-			public static final String[] FRAGRANT_OLIVE_SWORD_TOOLTIP = {"Currently unattainable"};
+			public static final String[] OSMANTHUS_BLADE_TOOLTIP = {"Currently unattainable"};
 			public static final String[] EXCALIBUR_TOOLTIP = {"Currently unattainable, except by System Commands"};
 			public static final String[] CALIBUR_TOOLTIP = {"Currently unattainable, except by System Commands"};
 		
@@ -31,7 +29,7 @@ public class ModExtras {
 			public static final int P_CALIBUR = 40;
 			public static final int P_BLACK_ONE = 46;
 			public static final int P_BLUE_ROSE_SWORD = 45;
-			public static final int P_FRAGRANT_OLIVE_SWORD = 60;
+			public static final int P_OSMANTHUS_BLADE = 60;
 			public static final int P_DRAGON_BONE_AXE = 10;
 			public static final int P_GIGAS_CEDAR_BRANCH = 25;
 			public static final int P_DRAGON_ICE = 5;
@@ -43,7 +41,7 @@ public class ModExtras {
 			public static final ToolMaterial M_CALIBUR = EnumHelper.addToolMaterial("m_calibur", P_CALIBUR, P_CALIBUR*60, P_CALIBUR/4.0f, P_CALIBUR/1.5f, 15);
 			public static final ToolMaterial M_GIGAS_CEDAR = EnumHelper.addToolMaterial("m_gigas_cedar", P_BLACK_ONE, P_BLACK_ONE*60, P_BLACK_ONE/4.0f, P_BLACK_ONE/1.5f, 15);
 			public static final ToolMaterial M_BLUE_ROSE = EnumHelper.addToolMaterial("m_blue_rose", P_BLUE_ROSE_SWORD, P_BLUE_ROSE_SWORD*60, P_BLUE_ROSE_SWORD/4.0f, P_BLUE_ROSE_SWORD/1.5f, 15);
-			public static final ToolMaterial M_FRAGRANT_OLIVE = EnumHelper.addToolMaterial("m_fragrant_olive", P_FRAGRANT_OLIVE_SWORD, P_FRAGRANT_OLIVE_SWORD*60, P_FRAGRANT_OLIVE_SWORD/4.0f, P_FRAGRANT_OLIVE_SWORD/1.5f, 15);
+			public static final ToolMaterial M_OSMANTHUS = EnumHelper.addToolMaterial("m_fragrant_olive", P_OSMANTHUS_BLADE, P_OSMANTHUS_BLADE*60, P_OSMANTHUS_BLADE/4.0f, P_OSMANTHUS_BLADE/1.5f, 15);
 			
 			public static final ToolMaterial M_DRAGON_BONE = EnumHelper.addToolMaterial("m_dragon_bone", P_DRAGON_BONE_AXE, P_DRAGON_BONE_AXE*60, P_DRAGON_BONE_AXE/4.0f, P_DRAGON_BONE_AXE/1.5f, 10);
 		

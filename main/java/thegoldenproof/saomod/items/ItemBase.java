@@ -22,16 +22,13 @@ import thegoldenproof.saomod.util.handlers.RegistryHandler;
 public class ItemBase extends Item {
 	
 	ArrayList<String> tooltip;
-	int priority;
 	
-	public ItemBase(String name, int priority, CreativeTabs tab, String[] tooltip) {
-		this.priority = priority;
+	public ItemBase(String name, CreativeTabs tab, String[] tooltip) {
 		if (tooltip != null) {
 			this.tooltip = new ArrayList<String>(Arrays.asList(tooltip));
 		} else {
 			this.tooltip = new ArrayList<String>();
 		}
-		this.tooltip.add("Object Priority: "+priority);
 		
 		setUnlocalizedName(name);
 		setRegistryName(name);
@@ -40,28 +37,13 @@ public class ItemBase extends Item {
 		RegistryHandler.ITEMS.add(this);
 	}
 	
-	public ItemBase(String name, int priority, CreativeTabs tab) {
-		this(name, priority, tab, null);
+	public ItemBase(String name, CreativeTabs tab) {
+		this(name, tab, null);
 	}
 	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.addAll(this.tooltip);
 	}
-	
-	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-		if (entityIn instanceof EntityPlayerMP) {
-			EntityPlayerMP p = (EntityPlayerMP)(entityIn);
-			IRpgPlayer rpg = (IRpgPlayer) p.getCapability(RpgPlayerProvider.RPG_PLAYER_CAP, (EnumFacing) null);
-			int level = rpg.getLevel();
-			if (priority > level) {
-				p.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("slowness"), 10, (int)(Math.ceil((priority-level)/10))));
-				p.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("mining_fatigue"), 10, (int)(Math.ceil((priority-level)/10))));
-			}
-		}
-	}
-	
-	
 	
 }
