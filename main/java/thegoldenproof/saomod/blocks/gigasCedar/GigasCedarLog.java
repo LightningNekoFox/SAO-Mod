@@ -7,7 +7,10 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -31,7 +34,7 @@ import thegoldenproof.saomod.init.ModItems;
 import thegoldenproof.saomod.util.IMetaName;
 import thegoldenproof.saomod.util.handlers.RegistryHandler;
 
-public class GigasCedarLog extends BlockLog implements IMetaName {
+public class GigasCedarLog extends BlockRotatedPillar implements IMetaName {
 	
 	public static final PropertyEnum<GigasCedarLog.EnumType> VARIANT = PropertyEnum.<GigasCedarLog.EnumType>create("variant", GigasCedarLog.EnumType.class, new Predicate<GigasCedarLog.EnumType>() {
 		public boolean apply(@Nullable GigasCedarLog.EnumType apply) {
@@ -40,15 +43,16 @@ public class GigasCedarLog extends BlockLog implements IMetaName {
 	});
 
 	public GigasCedarLog(String name, CreativeTabs tab) {
-		
+		super(MaterialGigasCedar.GIGAS_CEDAR);
 		setCreativeTab(tab);
 		setRegistryName(name);
 		setUnlocalizedName(name);
-		setHardness(90);
-		setSoundType(SoundType.METAL);
-		setDefaultState(blockState.getBaseState().withProperty(VARIANT, GigasCedarLog.EnumType.DEFAULT).withProperty(LOG_AXIS, EnumAxis.Y));
-		setHarvestLevel("sword", 4);
+		setHardness(150);
+		setSoundType(SoundType.STONE);
+		setDefaultState(blockState.getBaseState().withProperty(VARIANT, GigasCedarLog.EnumType.DEFAULT).withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y));
+		setHarvestLevel("sword", 5);
 		setResistance(10000);
+		
 		RegistryHandler.BLOCKS.add(this);
 		RegistryHandler.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}
@@ -76,7 +80,8 @@ public class GigasCedarLog extends BlockLog implements IMetaName {
 	@Override
 	public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
 		
-		return super.canHarvestBlock(world, pos, player);
+		return player.getHeldItem(EnumHand.MAIN_HAND).getItem().equals(ModItems.DRAGON_BONE_AXE) ||
+			   player.getHeldItem(EnumHand.MAIN_HAND).getItem().equals(ModItems.BLUE_ROSE_SWORD);
 		
 	}
 	
@@ -91,13 +96,13 @@ public class GigasCedarLog extends BlockLog implements IMetaName {
 		
 		switch (meta & 6) {
 		case 0:
-			state = state.withProperty(LOG_AXIS, EnumAxis.Y); break;
+			state = state.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y); break;
 		case 1:
-			state = state.withProperty(LOG_AXIS, EnumAxis.X); break;
+			state = state.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.X); break;
 		case 2:
-			state = state.withProperty(LOG_AXIS, EnumAxis.Z); break;
+			state = state.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Z); break;
 		default:
-			state = state.withProperty(LOG_AXIS, EnumAxis.NONE); break;
+			state = state.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.NONE); break;
 		}
 		
 		return state;
@@ -109,7 +114,7 @@ public class GigasCedarLog extends BlockLog implements IMetaName {
 		int i = 0;
 		i = i | ((GigasCedarLog.EnumType)state.getValue(VARIANT)).getMeta();
 		
-		switch ((BlockLog.EnumAxis)state.getValue(LOG_AXIS)) {
+		switch ((BlockLog.EnumAxis)state.getValue(BlockLog.LOG_AXIS)) {
 		case X:
 			i |= 1; break;
 		case Y:
@@ -124,7 +129,7 @@ public class GigasCedarLog extends BlockLog implements IMetaName {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {VARIANT, LOG_AXIS});
+		return new BlockStateContainer(this, new IProperty[] {VARIANT, BlockLog.LOG_AXIS});
 	}
 	
 	@Override

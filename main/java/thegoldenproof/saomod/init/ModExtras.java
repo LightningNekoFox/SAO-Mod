@@ -41,7 +41,7 @@ public class ModExtras {
 			public static final ToolMaterial M_CALIBUR = EnumHelper.addToolMaterial("m_calibur", P_CALIBUR, P_CALIBUR*60, P_CALIBUR/4.0f, P_CALIBUR/1.5f, 15);
 			public static final ToolMaterial M_GIGAS_CEDAR = EnumHelper.addToolMaterial("m_gigas_cedar", P_BLACK_ONE, P_BLACK_ONE*60, P_BLACK_ONE/4.0f, P_BLACK_ONE/1.5f, 15);
 			public static final ToolMaterial M_BLUE_ROSE = EnumHelper.addToolMaterial("m_blue_rose", P_BLUE_ROSE_SWORD, P_BLUE_ROSE_SWORD*60, P_BLUE_ROSE_SWORD/4.0f, P_BLUE_ROSE_SWORD/1.5f, 15);
-			public static final ToolMaterial M_OSMANTHUS = EnumHelper.addToolMaterial("m_fragrant_olive", P_OSMANTHUS_BLADE, P_OSMANTHUS_BLADE*60, P_OSMANTHUS_BLADE/4.0f, P_OSMANTHUS_BLADE/1.5f, 15);
+			public static final ToolMaterial M_OSMANTHUS = EnumHelper.addToolMaterial("m_osmanthus", P_OSMANTHUS_BLADE, P_OSMANTHUS_BLADE*60, P_OSMANTHUS_BLADE/4.0f, P_OSMANTHUS_BLADE/1.5f, 15);
 			
 			public static final ToolMaterial M_DRAGON_BONE = EnumHelper.addToolMaterial("m_dragon_bone", P_DRAGON_BONE_AXE, P_DRAGON_BONE_AXE*60, P_DRAGON_BONE_AXE/4.0f, P_DRAGON_BONE_AXE/1.5f, 10);
 		

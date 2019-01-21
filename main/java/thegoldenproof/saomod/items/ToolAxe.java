@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -18,6 +19,7 @@ import net.minecraft.world.World;
 import pilot.simplerpg.capabilities.IRpgPlayer;
 import pilot.simplerpg.capabilities.RpgPlayerProvider;
 import thegoldenproof.saomod.SAOM;
+import thegoldenproof.saomod.init.ModBlocks;
 import thegoldenproof.saomod.util.IPriority;
 import thegoldenproof.saomod.util.handlers.RegistryHandler;
 
@@ -45,6 +47,14 @@ public class ToolAxe extends ItemAxe implements IPriority {
 		setCreativeTab(tab);
 		
 		RegistryHandler.ITEMS.add(this);
+	}
+	
+	@Override
+	public boolean canHarvestBlock(IBlockState blockIn) {
+		return (
+				super.canHarvestBlock(blockIn) ||
+				blockIn.getBlock() == ModBlocks.GIGAS_CEDAR_LOG
+				);
 	}
 	
 	public void setPriorityReqd(boolean priorityReqd) {
